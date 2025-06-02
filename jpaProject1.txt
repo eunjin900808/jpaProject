@@ -1,0 +1,9 @@
+jpaProject1
+
+MyController
+test1 -> 타임리프 텍스트출력
+test2 -> 타임리프 변수(with속성)
+test3 -> 타임리프 제어문(if속성), > (gt), >= (ge), < (lt), <= (le)
+test4 -> 타임리프 반복문(each속성), n: 출력변수, #numbers.sequence()
+
+===========================================================

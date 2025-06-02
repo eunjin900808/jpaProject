@@ -1,0 +1,35 @@
+string boot -> html+jsp+{jstl}
+string boot -> html+{thymeleaf}
+
+     MVC : M(model), V(view), C(controller)
+	(1)lombok 	- dto : get/set(x)
+	(2)jpa	 	- impl-mapper-SQL(x) / service만 있음 : model이 없어진 개념
+		- CRUD의 자동화
+		- C(Create/Insert/생성) R(Read/읽기) U(Update/갱신) D(Delete/삭제)
+	(3)rest api	- web address (x)
+		        (x)-> localhost:8080/boardList
+			   localhost:8080/boardInsert
+		        (o)-> localhost:8080/board 주소에 목적성을 갖는 주소를 사용하지않는다
+		        (o)-> localhost:8080/board/12
+		        (o)-> localhost:8080/board/00
+
+	-LIST-
+	@GetMapping("/board")
+	public String boardList() { 
+	
+	}
+
+	@PostMapping("/board")
+	public int boardInsert() {
+
+	}
+
+	@GetMapping("/board/{seqid}")
+	public String boardList() { 
+	
+	}
+
+       select -> {조인} -> ~~{몇백줄}
+       insert
+       update
+       delete

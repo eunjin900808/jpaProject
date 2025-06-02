@@ -1,0 +1,18 @@
+1. html/css
+2. javascript/jquery(ajax)
+3. java
+4. jsp
+5. jstl = spring의 return 데이터 값
+6. spring boot - mybatis / service-impl-mapper-{sql}
+7. oracle
+8. git - 소스관리
+=======================================
+
+spring boot -> MVC (Model View Controller)
+	    -> View :: html/jsp/jstl
+
+spring boot -> JPA / REST
+	    -> View :: html/thymeleaf(타임리프)
+	    -> View :: React or Vue
+	    -> View :: 넥사크로(Nexacro)엑스플렛폼
+	    -> View :: 파워빌더
