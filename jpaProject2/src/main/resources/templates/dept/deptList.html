@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>타임리프 텍스트 출력</title>
+</head>
+<body>
+
+<table border="1">
+	<tr>
+		<th>부서번호</th>
+		<th>부서이름</th>
+		<th>부서팀명</th>
+	</tr>
+	
+	<tr th:each="result : ${list}">
+		<th th:text="${result.deptno}"></th>
+		<th th:text="${result.deptnm}"></th>
+		<th th:text="${result.depttm}"></th>
+	</tr>
+
+</table>
+	
+</body>
+</html>

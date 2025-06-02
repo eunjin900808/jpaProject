@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>타임리프 변수 및 제어문</title>
+
+</head>
+
+<body>
+<div th:with="name='김장미',gender='F'">
+	이름 : <span th:text="${name}"></span><br>
+	성별 : <span th:if="${gender=='M'}">남자</span>
+		  <span th:if="${gender!='F'}">여자</span>
+</div>
+
+<hr>
+
+<div th:with="subject='운전필기',score=88">
+	과목 : <span th:text="${subject}"></span><br>
+	결과 : <span th:if="${score >= 60}">합격</span>
+		  <span th:if="${score < 60}">불합격</span><br>
+	<!-- > (gt), >= (ge), < (lt), <= (le) -->
+	레벨 : <span th:if="${score ge 90}">A등급</span>
+		  <span th:if="${score lt 90 && score ge 80}">B등급</span>
+		  <span th:if="${score lt 80 && score ge 70}">C등급</span>
+		  <span th:if="${score lt 70 && score ge 60}">D등급</span>
+		  <span th:if="${score lt 60}">F등급</span><br>
+</div>
+
+<hr>
+
+<div th:with="number=31">
+	숫자 : <span th:text="${number}"></span> <br>
+	구분 : <span th:if="${number%2==0}">짝수</span>
+		  <span th:if="${number%2!=0}">홀수</span> <br>
+	구분 : <span th:if="${number%2 eq 0}">짝수</span>
+		  <span th:if="${number%2 ne 0}">홀수</span> <br>
+	구분 : <span th:if="${number%7 eq 0}">7의 배수 맞음</span>
+		  <span th:if="${number%7 ne 0}">7의 배수 아님</span>
+</div>
+
+<hr>
+
+<div th:with="age=50">
+	나이 : <span th:text="${age}"></span><br>
+		  <span th:if="${age < 20}">
+		  	<span th:if="${age < 15}">어린이</span>
+		  	<span th:if="${age >= 15}">청소년</span>
+		  </span>
+		  <span th:if="${age >= 20}">
+		  	<span th:if="${age < 40}">청년</span>
+		  	<span th:if="${age >= 40}">중년</span>
+		  </span>
+		  입니다
+</div>
+
+</body>
+</html>

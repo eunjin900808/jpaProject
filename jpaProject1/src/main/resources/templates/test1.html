@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>타임리프 텍스트 출력</title>
+
+</head>
+
+<body>
+
+<th:block th:with="str='타임리프'"> <!-- 변수만들기 (지역변수) -->
+	<span th:text="${str}"></span> <!-- 출력하기 -->
+</th:block>
+
+<h1>학원수업과목</h1>
+<p th:text="1.JAVA">DFSFDS</p>
+<p th:text="2.ORACLE"></p>
+<p th:text="3.SPRING"></p>
+
+<h3 th:text="자바수업내용"></h3>
+<ul>
+     <li th:text="객체지향"></li>
+      <li th:text="메소드"></li>
+</ul>
+
+<h3 th:text="포털사이트"></h3>
+<a th:href="@{http://google.com}" taget="_blank">구글</a>
+
+<table style="width:500px; border:1px solid #ccc; margin:20px;">
+
+    <tr>
+          <th>번호</th>
+          <th>아이디</th>
+          <th>이름</th>
+     </tr>
+
+     <tr>
+          <td th:text="1"></td>
+          <td th:text="test1"></td>
+          <td th:text="홍길동"></td>
+     </tr>
+
+     <tr>
+         <td th:text="2"></td>
+         <td th:text="sos77"></td>
+         <td th:text="김만술"></td>
+     </tr>
+</table>
+
+ 
+
+<table style="width:500px; border:1px solid #ccc; margin:20px;">
+
+    <tr>
+         <th>번호</th>
+         <th>제목</th>
+         <th>글쓴이</th>
+     </tr>
+
+     <tr>
+        <td th:text="1"></td>
+        <td th:text="첫째글입니다."></td>
+        <td><span th:text="김영희"></span></td>
+     </tr>
+
+     <tr>
+           <td><span th:text="2"></span></td>
+           <td><span th:text="둘째글입니다."></span></td>
+           <td><span th:text="민주희"></span></td>
+     </tr>
+
+     <tr>
+         <td><span th:text="2"></span></td>
+         <td><th:block th:text="오케이거다."></th:block></td>
+         <td><th:block th:text="삼돌이"></th:block></td>
+     </tr>
+
+</table>
+
+</body>
+</html>

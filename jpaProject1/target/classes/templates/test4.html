@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>타임리프 반복문</title>
+
+</head>
+
+<body>
+
+<div>
+	<!-- n : 출력변수 -->
+	<span th:each="n:${#numbers.sequence(1,10,1)}" th:text="${n}"></span>
+</div>
+
+<div>
+	<!-- n : 출력변수 -->
+	<span th:each="n:${#numbers.sequence(10,1)}">
+		<th:block th:text="${n}"></th:block>
+	</span>
+</div>
+
+<div>
+	<!-- n : 출력변수 -->
+	<span th:each="n:${#numbers.sequence(10,1,-1)}">
+		<th:block th:text="${n}"></th:block>
+	</span>
+</div>
+
+<div>
+	<!-- fail -->
+	<span th:each="n:${#numbers.sequence(20,1,1)}">
+		<th:block th:text="${n}"></th:block>
+	</span>
+</div>
+
+<div>
+	<span th:each="n:${#numbers.sequence(20,1,-3)}">
+		<th:block th:text="${n}"></th:block>
+	</span>
+</div>
+
+<div th:with="start=3,end=15">
+	<span th:each="n:${#numbers.sequence(start,end)}">
+		<th:block th:text="${n}"></th:block>
+	</span>
+</div>
+<hr>
+<table border="1">
+	<tr>
+		<td th:each="n:${#numbers.sequence(1,5)}" th:text="${n}"></td>
+	</tr>
+</table>
+<hr>
+<table border="1">
+	<tr th:each="n:${#numbers.sequence(1,5)}" th:with="cnt=1">
+		<td th:text=${n}></td>
+		<td><span th:text="${n+cnt}"></span></td>
+	</tr>
+</table>
+<hr>
+<table border="1">
+	<tr th:each="yy,n:${#numbers.sequence(2021,2025)}">
+		<td th:text=${n.index}></td>
+		<td th:text=${n.count}></td>
+		<td><span th:text="${yy}"></span></td>
+	</tr>
+</table>
+<hr>
+
+<div th:with="str='JavaScript'">
+	<span th:text="${#strings.toUpperCase(str)}"></span><br>
+	<span th:text="${#strings.indexOf(str,'Java')}"></span><br>
+	<span th:text="${#strings.length(str)}"></span><br>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>타임리프 변수</title>
+
+</head>
+
+<body th:with="bgcolor='yellow'">
+
+<th:block th:with="str='타입리프'">
+	<span th:text="${str}"></span>
+</th:block>
+<span th:text="${str}"></span>
+
+<!-- div 태그를 이용한 변수 생성 -->
+
+<div th:with="userid='t101',username='동경남'">
+아이디 : <span th:text="${userid}"></span><br>
+이름 : <span th:text="${username}"></span><br>
+</div>
+아이디 : <span th:text="${userid}"></span>
+<hr>
+
+<table th:with="cnt1=10,cnt2=20,cnt=30">
+	<tr th:with="a1='apple'">
+		<td th:text="${cnt1}"></td>
+		<td th:text="${a1}"></td>
+	</tr>
+	<tr>
+		<td th:text="${cnt2}"></td>
+		<td th:text="${bgcolor}"></td>
+	</tr>
+	<tr>
+		<td th:text="${cnt3}"></td>
+		<td th:with="a1='banana'" th:text="${a1}"></td>
+	</tr>
+
+</table>
+
+</body>
+</html>
