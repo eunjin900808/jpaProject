@@ -15,7 +15,9 @@
 	
 	<tr th:each="result : ${list}">
 		<th th:text="${result.deptno}"></th>
-		<th th:text="${result.deptnm}"></th>
+		<th>
+			<a th:href="@{|/dept2/${result.deptno}|}" th:text="${result.deptnm}"></a>
+		</th>
 		<th th:text="${result.depttm}"></th>
 	</tr>
 

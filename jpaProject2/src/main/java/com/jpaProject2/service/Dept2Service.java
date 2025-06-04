@@ -22,4 +22,19 @@ public class Dept2Service {
 	public List<Dept2Dto> getFindAllRead() {
 		return dept2Repository.findAll();
 	}
+	
+	/**
+	 * 상세보기
+	 */	
+	public Dept2Dto getFindById(Integer deptno) { //findById : 상세보기 처리관련 메소드
+		//orElse(null) : 널값 허용 안함
+		return dept2Repository.findById(deptno).orElse(null);
+	}
+	
+	/**
+	 * 삭제처리
+	 */
+	public void deleteById(Integer deptno) { // 삭제처리에는 return 이 필요없다
+		dept2Repository.deleteById(deptno);
+	}
 }
