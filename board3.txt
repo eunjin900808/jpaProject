@@ -1,0 +1,13 @@
+0. 게시판 - {공지사항 형식의 게시판}
+1. 회의실관리 프로그램
+    {달력형식}
+
+=====================================================================================
+1. com.jpaProject2.entity - BoardDto.java -> 테이블만들기
+2. com.jpaProject2.controller - BoardController.java -> 화면을 열때는 ModelAndView를 반드시 이용해야한다
+3. com.jpaProject2.repository - BoardRepository.java
+4. com.jpaProject2.service -BoardService.java
+
+static ::: 정적인 요소들이 들어간다 / css 와 js는 static에 넣어준다
+
+templates -> board -> nboardWrite.html (기존 jsp파일을 카피해왔기 때문에 jsp -> html 확장자변경)
