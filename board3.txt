@@ -3,11 +3,14 @@
     {달력형식}
 
 =====================================================================================
-1. com.jpaProject2.entity - BoardDto.java -> 테이블만들기
+1. com.jpaProject2.entity - BoardDto.java -> 테이블만들기(board3)
 2. com.jpaProject2.controller - BoardController.java -> 화면을 열때는 ModelAndView를 반드시 이용해야한다
 3. com.jpaProject2.repository - BoardRepository.java
 4. com.jpaProject2.service -BoardService.java
 
 static ::: 정적인 요소들이 들어간다 / css 와 js는 static에 넣어준다
 
-templates -> board -> nboardWrite.html (기존 jsp파일을 카피해왔기 때문에 jsp -> html 확장자변경)
+templates -> board -> (기존 jsp파일을 카피해왔기 때문에 jsp -> html 확장자변경)
+		     nboardWrite.html(게시판등록화면)
+		=> 스크립트 url경로를 다 /board로 변경해줌
+		     noboardList.html(게시판목록화면)

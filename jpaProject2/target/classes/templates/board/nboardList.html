@@ -24,6 +24,8 @@
  <div>
 
  	Total : <span th:text="${ptotal}"></span>
+ 	<!-- ${ptotal}은 컨트롤러에서 넘겨준 값.(ptotal은 전체 게시글 수)
+ 		model.addObject("ptotal", page.getTotalElements())에서 온 값 -->
 
  </div>
 	<table class="table1">
@@ -43,12 +45,12 @@
     	</tr>
 
 
-    	<tr th:each="result, myState : ${plist}">
-    		<td th:text="${startPageRownum - myState.index}"></td>
+    	<tr th:each="result, myState : ${plist}"> <!-- result : 현재 반복 중인 게시글 -->
+    		<td th:text="${startPageRownum - myState.index}"></td> <!-- myState.index는 0부터 시작하는 반복 인덱스 / 번호를 역순으로 표시-->
 	    	<td> <a th:href="@{|/board/${result.seqid}|}" th:text="${result.title}"></a> </td>
 	    	<td th:text="${result.name}"></td>
 	    	<td th:text="${result.hits}"></td>
-	    	<td th:text="${#strings.substring(result.rdate,0,10)}"></td>
+	    	<td th:text="${#strings.substring(result.rdate,0,10)}"></td> <!-- rdate : substring(0, 10) → YYYY-MM-DD 포맷만 표시 -->
     	</tr>
     
     	
@@ -56,7 +58,7 @@
     
     <div class="div_button_area">
 
-		<span th:each="n:${#numbers.sequence(1,ptotalPage)}">
+		<span th:each="n:${#numbers.sequence(1,ptotalPage)}"> <!-- ptotalPage: 전체 페이지 수 -->
 			<a th:href="@{|/board?indexpage=${n}|}"><span th:text="${n}"></span></a>
 		</span>
 		
