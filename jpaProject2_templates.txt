@@ -1,0 +1,19 @@
+src/main/resources
+-> templates
+    ->dept2
+	deptList.html
+==><a th:href="@{|/dept2/${result.deptno}|}" th:text="${result.deptnm}"></a>
+	- 화면이 넘어가게하려면 a를 걸어 href에도 앞에 th: 를 적어줘야한다
+	- 타임리프(Thymeleaf)에서 '@' 기호는 주로 URL을 참조할 때 사용(링크를 생성하거나 폼의 액션 URL을 지정할 때 '@'를 활용)
+	- 파이프문법
+		->@{| ... |}
+		문법은 문자열 템플릿으로, 문자열 내에 변수 값을 삽입할 때 사용
+		-> |(파이프)를 앞뒤에 넣어줘야 주소가 깨지지 않는다 (특정 변수 값을 URL에 포함시키고 싶을 때 파이프를 넣어줘야한다)
+		->변수의 값이 URL에 삽입되어 /dept2/2 처럼 동적으로 링크가 생성된다.
+findById : 상세보기 처리관련 메소드
+orElse(null) : 널값 허용 안함
+
+	deptWrite.html
+
+	deptModify.html
+		->벨류를 쓸때도 th:value 앞에 th:를 적어줘야함
