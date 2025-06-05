@@ -21,7 +21,9 @@ public class BoardController {
 	public BoardController(BoardService boardService) {
 		this.boardService = boardService;
 	}
-	
+	/**
+	 * 등록화면
+	 */
 	@GetMapping("/write")
 	public ModelAndView write() {
 		ModelAndView model = new ModelAndView();
@@ -29,6 +31,9 @@ public class BoardController {
 		return model;
 	}
 	
+	/**
+	 * 등록/ 수정 / 삭제 (처리)
+	 */
 	@PostMapping ///save 같은 경로에 대한 POST 요청을 처리
 	public String save(BoardDto dto) {
 		String msg="ok"; // 기본적으로 결과 메시지를 "ok"로 설정
@@ -39,6 +44,9 @@ public class BoardController {
 		return msg; // 최종적으로 저장 성공이면 "ok", 실패면 "fail" 문자열을 클라이언트에 반환
 	}
 	
+	/**
+	 * 목록화면
+	 */
 	@GetMapping
 	public ModelAndView list(@RequestParam(defaultValue="1") int indexpage) { // indexpage 변수를 URL에서 받는다. (예: /board/list?indexpage=2 → indexpage = 2)
 		// @RequestParam(defaultValue="1") :::  값이 없으면 기본값 1로 처리
@@ -69,6 +77,9 @@ public class BoardController {
 		return model;
 	}
 	
+	/**
+	 * 상세화면 / 수정화면
+	 */
 	@GetMapping("{gubun}/{seqid}")
 	public ModelAndView detail(@PathVariable int gubun, @PathVariable int seqid) {
 		// @PathVariable : URL 경로에서 값을 추출해서 변수에 넣어주는 어노테이션
