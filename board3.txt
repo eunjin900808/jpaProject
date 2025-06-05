@@ -4,13 +4,44 @@
 
 =====================================================================================
 1. com.jpaProject2.entity - BoardDto.java -> 테이블만들기(board3)
+	- BOARD3 테이블과 매핑 -
+	===>JPA 관련 어노테이션
+		- @Entity // 데이터베이스의 테이블과 매핑되는 객체, JPA가 관리
+		- @Table(name="BOARD3") //  DB 테이블 이름을 지정
+	===>Lombok 관련 어노테이션
+		- @Data // 모든 필드의 getter/setter 생성, 기본 메서드들이 자동 생성 (@ToString,@EqualsAndHashCode,@RequiredArgsConstructor)
+		- @NoArgsConstructor // 파라미터가 없는 기본 생성자를 생성, JPA는 기본 생성자가 반드시 필요
+		- @AllArgsConstructor // 모든 필드를 인자로 받는 생성자를 자동 생성
+		- @Builder // 빌더 패턴을 사용할 수 있게 해
 2. com.jpaProject2.controller - BoardController.java -> 화면을 열때는 ModelAndView를 반드시 이용해야한다
 3. com.jpaProject2.repository - BoardRepository.java
 4. com.jpaProject2.service -BoardService.java
 
 static ::: 정적인 요소들이 들어간다 / css 와 js는 static에 넣어준다
 
+/board/write -> 등록화면
+/board	     -> 등록처리(save) -> POST / 고유번호가 없다x
+/board	     -> 목록화면	    -> GET
+/board/1/12/ -> 상세화면	    -> GET / 구분값 / 고유번호
+/board/2/12/ -> 수정화면	    -> GET / 구분값 / 고유번호
+	                  ==> (구분자(gubun)만 다름)
+/board	     -> 수정처리(save) -> POST / 고유번호가 있다o (고유번호도포함됨)
+/board	     -> 삭제처리(save) -> POST / 고유번호만 있다o (고유번호만있는것)
+
 templates -> board -> (기존 jsp파일을 카피해왔기 때문에 jsp -> html 확장자변경)
 		     nboardWrite.html(게시판등록화면)
 		=> 스크립트 url경로를 다 /board로 변경해줌
 		     noboardList.html(게시판목록화면)
+		=>
+		     noboardDetail.html(게시판목록화면)
+====================================================================================
+service(인터페이스파일/명세처리) -> serviceImpl -> mapper -> sql
+
+service(클래스파일) -> repository파일과 연결
+
+조회수
+update board3 set tits=hits+1 where seqid='12'
+(1) 상세정보를 가져옴
+(2) hits 컬럼 값만 가져옴
+(3) 자바에서 ++시킴, set
+(4) 전체저장
