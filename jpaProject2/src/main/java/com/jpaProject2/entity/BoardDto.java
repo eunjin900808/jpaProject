@@ -17,15 +17,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Table(name="BOARD3")
+@Entity // 데이터베이스의 테이블과 매핑되는 객체, JPA가 관리
+@Table(name="BOARD3") //  DB 테이블 이름을 지정
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class BoardDto {
 
-	@Id // 기본키 설정
+	@Id // 기본키 / 기본 키(Primary Key)를 표시하는 어노테이션
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //시퀀스가 자동으로만들어짐
 	private int seqid;
 	
@@ -41,7 +41,7 @@ public class BoardDto {
 	@Column(length=4000)
 	private String content;
 	
-	private int hits = 0;
+	private int hits;
 	
 	@CreationTimestamp	// 최초생성날짜
 	private Timestamp rdate;

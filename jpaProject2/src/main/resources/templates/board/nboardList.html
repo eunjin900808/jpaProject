@@ -45,9 +45,15 @@
     	</tr>
 
 
+		<!-- result : 리스트 안에 있는 각각의 요소 하나를 담는 변수 이름 -->
+		<!-- myState : 반복 상태 정보를 담는 변수 이름  -->
+		<!-- plist에 들어있는 데이터를 하나씩 꺼내서 result에 담고, 현재 반복 상황 정보를 myState에 담으면서 <tr> 태그를 반복 생성  -->
     	<tr th:each="result, myState : ${plist}"> <!-- result : 현재 반복 중인 게시글 -->
     		<td th:text="${startPageRownum - myState.index}"></td> <!-- myState.index는 0부터 시작하는 반복 인덱스 / 번호를 역순으로 표시-->
-	    	<td> <a th:href="@{|/board/${result.seqid}|}" th:text="${result.title}"></a> </td>
+			<!-- myState.index : 0부터 시작하는 현재 반복 번호
+				 myState.count : 1부터 시작하는 반복 번호  -->
+	    	<td> <a th:href="@{|/board/1/${result.seqid}|}" th:text="${result.title}"></a> </td>
+	    	<!-- "@{|/board/1/${result.seqid}|}" : 상세화면으로 넘어갈때의 주소 -->
 	    	<td th:text="${result.name}"></td>
 	    	<td th:text="${result.hits}"></td>
 	    	<td th:text="${#strings.substring(result.rdate,0,10)}"></td> <!-- rdate : substring(0, 10) → YYYY-MM-DD 포맷만 표시 -->

@@ -2,6 +2,7 @@ package com.jpaProject2.controller;
 
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -58,13 +59,57 @@ public class BoardController {
 		// 게시판에서 번호를 거꾸로 매기는 경우(최신 글이 위에 오고 번호가 내려감) 사용하는 방식
 		
 		model.addObject("plist", page.getContent());
-		// 현재 페이지의 게시글 리스트(List<BoardDto>)를 모델에 담
+		// 현재 페이지의 게시글 리스트(List<BoardDto>)를 모델에 담는다
 		//model.addObject("currentPage", page.getNumber());
 		model.addObject("startPageRownum", startPageRownum);
-		model.addObject("ptotal", page.getTotalElements()); // 전체 게시글 수
-		model.addObject("ptotalPage", page.getTotalPages()); // 전체 페이지 수
+		model.addObject("ptotal", page.getTotalElements()); // 전체 게시글 수 / total 개수
+		model.addObject("ptotalPage", page.getTotalPages()); // 전체 페이지 수 / total 페이지개수
 		
 		model.setViewName("/board/nboardList");
 		return model;
+	}
+	
+	@GetMapping("{gubun}/{seqid}")
+	public ModelAndView detail(@PathVariable int gubun, @PathVariable int seqid) {
+		// @PathVariable : URL 경로에서 값을 추출해서 변수에 넣어주는 어노테이션
+		
+		ModelAndView model = new ModelAndView();
+		//화면에 보여줄 데이터 + 뷰 경로를 담는 객체
+		System.out.println("gubun:::"+gubun);
+		System.out.println("seqid:::"+seqid);
+		
+		// 상세정보 서비스
+		BoardDto dto = boardService.detail(seqid);
+		//seqid를 이용해서 DB에서 해당 게시글의 상세정보를 가져옴
+		//결과는 dto 객체에 저장
+
+		if(gubun == 1) {
+			// 조회수 증가
+			boardService.saveHits(seqid);
+				
+			// 내용 출력 관련
+			String cont = dto.getContent();
+			//줄바꿈 (\n -> <br>)
+			//공백처리 (' ' -> &nbsp;)
+			cont = cont.replace(">", "&gt;");
+			cont = cont.replace("<", "&lt;");
+			cont = cont.replace(" ", "&nbsp;");
+			cont = cont.replace("\n", "<br>");
+			dto.setContent(cont);
+
+			
+			model.setViewName("/board/nboardDetail");
+			// 보여줄 화면(view)의 경로 지정
+		
+		}else if( gubun == 2 ) {
+			
+			model.setViewName("/board/nboardModify");
+		}
+		
+		model.addObject("dto",dto);
+		// dto 객체를 "dto"라는 이름으로 뷰에 전달(뷰에서는 ${dto.title}, ${dto.content} 이런 식으로 접근 가능)
+				
+		return model;
+		//뷰 + 데이터 함께 리턴
 	}
 }
