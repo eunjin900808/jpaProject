@@ -26,24 +26,23 @@
 
 <table class="table1">
 	<tr>
-		<th>부서번호</th>
-		<th>부서이름</th>
-		<th>부서팀명</th>
+		<th>회의실번호</th>
+		<th>회의실크기</th>
 		<th>사용여부</th>
 	</tr>
 
 	<tr th:each="result : ${list}">
-		<td th:text="${result.deptno}"></td>
-		<td>
-		<a th:href="@{|/dept2/${result.deptno}|}" th:text="${result.deptnm}"></a>
-		</td>
-		<td th:text="${result.depttm}"></td>
-		<td th:text="${result.deptst}"></td>
+		<td th:text="${result.roomcd}"></td>
+		<td th:text="${result.roomsize}"></td>
+		<td th:text="${result.roomst}"></td>
 	</tr>
+ 
 </table>
 
 <div class="div_button_area">
-	<button type="button" class="button1" onClick="location='/dept2/write'">부서등록</button>
+
+	<button type="button" onClick="location='/room/write'">회의실 등록</button>
+	
 </div>
 
 

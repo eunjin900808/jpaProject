@@ -1,31 +1,118 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>타임리프 텍스트 출력</title>
-</head>
+	<meta charset="UTF-8">
+	<title>부서(팀) 정보 등록</title>
+	<link rel="stylesheet" href="/css/style.css" />
+	<link rel="stylesheet" href="/css/jquery-ui.css">
+  	<script src="/js/jquery-3.7.1.js"></script>
+  	<script src="/js/jquery-ui.js"></script>
+  	
+  	<script>
+ 	$( function() {
+   		$("#btn_delete").click( function(){
+   			if( !confirm("삭제하시겠습니까?") ){
+   				return false;
+   			}
+   			
+   			$("#deptnm").val("");
+			$("#depttm").val("");
 
-<script>
-function fn_delete(){
-	let f = document.frm;
-	f.deptnm.value = "";
-	f.depttm.value = "";
-	f.submit();
-}
+   			let form = $("#frm").serialize();  // serialize() : 폼을 인식하는 함수
+   			
+			$.ajax({
+				type:"post",		// 전송 타입
+				url:"/dept2",		// 전송 장소
+				data:form,   		// 전송 데이터
+
+   				dataType:"text", 	      // 받는 데이터 타입
+   				success:function(data) {  // data변수 : 실제 받은 데이터 값
+					if( data == "1" ) {  // data변수 값이 "ok" 라면 저장 성공으로 판단함
+						alert("삭제완료!");
+						location="/dept2";
+					}else if(data == "2"){
+						alert("팀명이 중복 되었습니다.!");
+					} else {
+						alert("삭제실패!");
+					}
+   				},
+   				// error : 전송에 실패한 경우
+   				error:function(){	
+					alert("삭제실패!");
+   				}
+   			});
+   		});
+ 		
+ 		
+ 		
+   		$("#btn_submit").click( function(){
+   			if( $("#deptnm").val() == "" ) {
+				alert("부서이름을 입력하세요.");
+				$("#deptnm").focus();
+				return false;
+   			}
+   			if( $("#depttm").val() == "" ) {
+				alert("팀 이름을 입력하세요.");
+				$("#depttm").focus();
+				return false;
+   			}
+   			//ajax() : {비동기}전송
+   			let form = $("#frm").serialize();  // serialize() : 폼을 인식하는 함수
+			$.ajax({
+				type:"post",		// 전송 타입
+				url:"/dept2",		// 전송 장소
+				data:form,   		// 전송 데이터
+
+   				dataType:"text", 	      // 받는 데이터 타입
+   				success:function(data) {  // data변수 : 실제 받은 데이터 값
+					if( data == "1" ) {  // data변수 값이 "ok" 라면 저장 성공으로 판단함
+						alert("수정완료!");
+						location="/dept2";
+					}else if(data == "2"){
+						alert("팀명이 중복 되었습니다.!");
+					} else {
+						alert("수정실패!");
+					}
+   				},
+   				// error : 전송에 실패한 경우
+   				error:function(){	
+					alert("수정실패!");
+   				}
+   			});
+   		});
+   		
+ 	});
 </script>
+</head>
 
 <body>
 
-	<form name="frm" method="post" action="/dept2">
+<div>
+	<header th:replace="fragments/header::header"></header>
+	
+	<!-- include -->
+	<nav th:replace="fragments/nav::nav"></nav>
 
-		부서이름 <input type="text" name="deptno" th:value="${dto.deptno}"><br>
-		부서이름 <input type="text" name="deptnm" th:value="${dto.deptnm}"><br>
-		소속팀명 <input type="text" name="depttm" th:value="${dto.depttm}"><br>
-		
-		<button type="submit">수정</button>
-		<button type="button" onClick="fn_delete()">삭제</button>
+<section>
 
-	</form>
+<form id="frm">
+부서번호 <input type="text" name="deptno" th:value="${dto.deptno}" readonly> <br>
+부서이름 <input type="text" id="deptnm" name="deptnm" th:value="${dto.deptnm}"> <br>
+소속팀명 <input type="text" id="depttm" name="depttm" th:value="${dto.depttm}"> <br>
+사용여부 <select name="deptst">
+		<option value="Y" th:selected="${dto.deptst=='Y'}" >사용</option>
+		<option value="N" th:selected="${dto.deptst=='N'}" >불가</option>
+       </select> <br>
+
+<button type="button" id="btn_submit">수정</button>
+<button type="button" id="btn_delete">삭제</button>
+
+</form>
+
+</section>
+	
+	<footer th:replace="fragments/footer::footer"></footer>
+</div>
 	
 </body>
 </html>
