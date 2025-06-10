@@ -31,6 +31,10 @@ public class Dept2Dto {
 	@Column(nullable = false, length=50)
 	String depttm; //팀이름
 
+	@Column(nullable = false, length=50)
+	String deptst; //팀 상태 :: Y/N :: 
+
  // INSERT -> Key 값 생략(키값을 전달해주지않으면 insert 로 인식한다)
  // UPDATE -> Key 값 포함
+	
 }

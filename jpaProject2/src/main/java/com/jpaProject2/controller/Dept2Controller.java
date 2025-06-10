@@ -31,15 +31,21 @@ public class Dept2Controller {
 	}
 	
 	@PostMapping
-	public Dept2Dto save(Dept2Dto dto) {
+	public String save(Dept2Dto dto) {
+		String msg = "1";
+		
+		System.out.println("부서이름 :::::::"+ dto.getDeptnm());
 		
 		if(dto.getDeptnm() == null || dto.getDeptnm().equals("")) {
 			// 부서번호가 넘어오지 않는 경우에 삭제처리
 			dept2Service.deleteById(dto.getDeptno());
 		}else {			
-			return dept2Service.createDept2(dto);
+			dto = dept2Service.createDept2(dto);
+			if(dto == null) {
+				msg = "4";
+			}
 		}
-		return dto;
+		return msg;
 	}
 	
 	@GetMapping
