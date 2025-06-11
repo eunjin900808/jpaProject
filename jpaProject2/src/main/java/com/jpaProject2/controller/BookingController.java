@@ -24,6 +24,13 @@ public class BookingController {
 		// 현재 시점의 년/월 세팅
 		int yy = cal.get(Calendar.YEAR); // 현재 연도 (예: 2025)
 		int mm = cal.get(Calendar.MONTH); // 0 ~ 11 // 현재 월 (예: 6월이면 mm = 5) - Calendar.MONTH는 0부터 시작하기 때문에 주의
+		int dd = cal.get(Calendar.DATE);
+		
+		int tyy = yy;
+		int tmm = mm;
+		int tdd = dd;
+		// 하단에 변질되기 전 현재시점의 날짜변수
+		
 		//int yy = 2025;
 		//int mm = 6; // 7월 (0-indexed 이므로 6은 실제로 7월)
 		
@@ -52,6 +59,9 @@ public class BookingController {
 		model.addObject("dayOfWeek", dayOfWeek); // 1일의 요일 (1~7)
 		model.addObject("yy", yy); // 연도
 		model.addObject("mm", mm); // 월 (0부터 시작 → 템플릿에서 +1 필요)
+		model.addObject("tyy", tyy);
+		model.addObject("tmm", tmm);
+		model.addObject("tdd", tdd);
 		
 		return model;
 	}
